@@ -220,7 +220,7 @@ client.on('message', message => {
 let args = message.content.split(' ').slice(1).join(' ');
 if (message.content.startsWith('+bcall')){
 if(message.member.roles.has(adminRole)) return;
-message.channel.sendMessage('جار ارسال الرسالة |:white_check_mark:')
+message.channel.sendMessage('the broadcast will send now|:white_check_mark:')
 client.users.forEach(m =>{
 m.sendMessage(args)
 })
