@@ -513,7 +513,7 @@ let welcomer = member.guild.channels.find("name","welcome-new-people");
 
 const serverStats = { 
     guildID: '584923133467951104',
-    totalUsersIS: '586594866767593496',
+    totalUsersID: '586594866767593496',
     memberCountID: '586594892734660628',
     botCountID: '586594924548456450',    
 }; //this is thefirst
