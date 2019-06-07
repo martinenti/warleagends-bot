@@ -577,14 +577,14 @@ client.on("message", async message => {
 var prefix = "+";
 var aoasm =[
 {q: "What is the capital of * * Morocco * *", a: "Rabat"},
-    {Q: "What is the capital of * * albania * *", a: "Tiran"},
+    {q: "What is the capital of * * albania * *", a: "Tiran"},
     {q: "What is the capital of * * algeria * *", a: "algeria"},
     {q: "What is the capital of * * andorra la Vella * *", a: "andorra"},
     {q: "What is the capital of * * angola * *", a: "Luanda"},
     {q: "What is the capital of * * antigua and Barbuda * *", a: "St Johns"},
     {q: "What is the capital of * * argentina * *", a: "Buenos aires"},
     {q: "What is the capital of * * armenia * *", a: "Yerevan"},
-    {q: "What is the capital of * * Egypt * *", a: "Cairo"}, SH
+    {q: "What is the capital of * * Egypt * *", a: "Cairo"},
     {q: "What is the capital of * * australia * *", a: "Canberra"},
     {q: "What is the capital of * * austria * *", a: "Vienna"},
     {q: "What is the capital of * * azerbaijan * *", a: "Baku"},
