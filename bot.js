@@ -488,6 +488,9 @@ client.on('message', message => {
 			      .addField('``My Prefix``' , `[ - ]` , true)
 			      .addField('``My Language``' , `[ Java Script ]` , true)
 			      .setFooter('By | Martin')
+	        })
+}
+});
 
 
 client.login(process.env.BOT_TOKEN);
