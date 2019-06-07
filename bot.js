@@ -407,6 +407,13 @@ var fkk =[
         {f:"Disassemble cow",k:"c o w"},
         {f:"Disassemble our server is cool",k:"o u r s e r v e r i s c o o l"},
         {f:"Disassemble the hero ",k:"t h e h e r o"},
+	{f:"Disassemble tail ",k:"t a i l"},
+	{f:"Disassemble train ",k:"t r a i n"},
+	{f:"Disassemble armor ",k:"a r m o r"},
+	{f:"Disassemble helicopter ",k:"h e l i c o p t e r"},
+	{f:"Disassemble head ",k:"h e a d"},
+	{f:"Disassemble omg ",k:"o m g},
+	{f:"Disassemble congratiolation ",k:"c o n g r a t i o l a t i o n"},
 	];
 client.on("message", async message => {
 	   var prefix = "+";
