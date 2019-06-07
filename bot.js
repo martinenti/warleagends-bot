@@ -419,7 +419,7 @@ var fkk =[
 client.on("message", async message => {
 	   var prefix = "+";
     if(message.content == prefix+"Disassemble"){
-        if(UserBlocked.has(message.guild.id)) return message.channel.send("هناك جلسة .")
+        if(UserBlocked.has(message.guild.id)) return message.channel.send("there is scecion .")
         UserBlocked.add(message.guild.id)
         var ask = fkk[Math.floor(Math.random() * fkk.length)];
         let embed = new Discord.RichEmbed()
