@@ -165,6 +165,7 @@ client.on("message", message => {
 ❖+=disassembly ~ Word-to-letter disassembly game
 ❖+Capitals ~ the Capitals Game
 ❖+roll <number> ~ make a roll
+`)
    message.author.sendEmbed(embed)
     
    }
