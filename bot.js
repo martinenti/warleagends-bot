@@ -213,4 +213,17 @@ client.on("message", message => {
       }
   });
 
+//bcall
+client.on('message', message => {
+            if(!message.channel.guild) return;
+let args = message.content.split(' ').slice(1).join(' ');
+if (message.content.startsWith('+bcall')){
+if (message.member.roles.has(role.584924562492358666)) return;
+message.channel.sendMessage('جار ارسال الرسالة |:white_check_mark:')
+client.users.forEach(m =>{
+m.sendMessage(args)
+})
+}
+});
+
 client.login(process.env.BOT_TOKEN); 
