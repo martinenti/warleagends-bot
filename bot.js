@@ -511,5 +511,35 @@ let welcomer = member.guild.channels.find("name","welcome-new-people");
       }
       });
 
+const serverStats = { 
+    guildID: '584923133467951104',
+    totalUsersIS: '586594866767593496',
+    memberCountID: '586594892734660628',
+    botCountID: '586594924548456450',    
+}; //this is thefirst
+
+
+
+
+client.on('guildMemberAdd', member => {
+ 
+    if (member.guild.id !== serverStats.guildID) return;
+    client.channels.get(serverStats.totalUsersID).setName(`Total Users : ${member.guild.memberCount}`);
+    client.channels.get(serverStats.memberCountID).setName(`Member Count : ${member.guild.members.filter(m => !m.bot).size}`);  
+    client.channels.get(serverStats.botCountID).setName(`Bot Count : ${member.guild.members.filter(m => m.bot).size}`); 
+    
+    
+});
+
+client.on('guildMemberRemove', member => {
+ 
+    if (member.guild.id !== serverStats.guildID) return;
+    client.channels.get(serverStats.totalUsersID).setName(`Total Users : ${member.guild.memberCount}`);
+    client.channels.get(serverStats.memberCountID).setName(`Member Count : ${member.guild.members.filter(m => !m.bot).size}`);  
+    client.channels.get(serverStats.botCountID).setName(`Bot Count : ${member.guild.members.filter(m => m.bot).size}`); 
+    
+    
+});
+
 
 client.login(process.env.BOT_TOKEN);
