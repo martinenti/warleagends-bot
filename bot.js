@@ -771,43 +771,25 @@ var prefix = "+";
        
 });
 
+var prefix = '+'; // your prefix
 client.on('message', message => {
-	var prefix = "+"
-  if (message.author.x5bz) return;
-  if (!message.content.startsWith(prefix)) return;
-
-  let command = message.content.split(" ")[0];
-  command = command.slice(prefix.length);
-
-  let args = message.content.split(" ").slice(1);
-
-  if (command == "ban") {
-               if(!message.channel.guild) return message.reply('** This command only for servers**');
-         
-  if(!message.guild.member(message.author).hasPermission("BaN_MEMBERS")) return message.reply("**You Don't Have ` BaN_MEMBERS ` Permission**");
-  if(!message.guild.member(client.user).hasPermission("BaN_MEMBERS")) return message.reply("**I Don't Have ` BaN_MEMBERS ` Permission**");
-  let user = message.mentions.users.first();
-  let reason = message.content.split(" ").slice(2).join(" ");
-  /*let b5bzlog = client.channels.find("name", "5bz-log");
-  if(!b5bzlog) return message.reply("I've detected that this server doesn't have a 5bz-log text channel.");*/
-  if (message.mentions.users.size < 1) return message.reply("**mention to the member**");
-  if(!reason) return message.reply ("**اtype the reason**");
-  if (!message.guild.member(user)
-  .bannable) return message.reply("**i cant ban this member**");
-
-  message.guild.member(user).ban(7, user);
-
-  const banembed = new Discord.RichEmbed()
-  .setauthor(`BaNNED!`, user.displayavatarURL)
-  .setColor("RaNDOM")
-  .setTimestamp()
-  .addField("**User:**",  '**[ ' + `${user.tag}` + ' ]**')
-  .addField("**By:**", '**[ ' + `${message.author.tag}` + ' ]**')
-  .addField("**Reason:**", '**[ ' + `${reason}` + ' ]**')
-  message.channel.send({
-    embed : banembed
-  })
-}
+  if(message.content.split(' ')[0] == `${prefix}ban`){
+  if(!message.guild || message.author.bot) return undefined;
+      if(!message.member.hasPermission('BAN_MEMBERS')) return message.channel.send('You don\'t have permission.');
+      if(!message.guild.member(client.user).hasPermission('BAN_MEMBERS')) return message.channel.send('I don\'t have permission.');
+      let args = message.content.split(" ").slice(1);
+      let user = message.guild.members.get(message.content.split(' ')[1]) || message.mentions.members.first();
+      let reason = message.content.split(" ").slice(2).join(" ");
+      if(!user) return message.channel.send(`Usage: ${prefix}ban @mention reason`);
+      if(!reason) reason = 'No reason provided.';
+      if(user.user.id === message.author.id) return message.channel.send('You can\'t ban yourself!');
+      if(message.guild.member(user.user).highestRole.position >= message.guild.member(message.member).highestRole.position) return message.channel.send(`You can't ban **${user.user.tag}** because his role highest than your role!`);
+     if(message.guild.member(user.user).highestRole.position >= message.guild.member(client.user).highestRole.position) return message.channel.send(``I can't ban **${user.user.tag}** because his role highest than my role!`);
+      if(message.guild.member(user.user).hasPermission('MANAGE_GUILD') || user.user.id == message.guild.owner.id) return message.channel.send(`You can't ban **${user.user.tag}** because he have Administration permissions!`);
+     if(!message.guild.member(user.user).bannable) return message.channel.send(I can't ban **${user.user.tag}**.`);
+      message.guild.member(user).ban(reason, user);
+      message.channel.send(`Done :+1:, I Banned ${user.user.username} from the server!\nReason: \`\`${reason}\`\``);
+    }
 });
 
 client.on('message', message => {
