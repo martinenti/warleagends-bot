@@ -493,4 +493,23 @@ client.on('message', message => {
 });
 
 
+client.on("guildMemberAdd", member => {
+let welcomer = member.guild.channels.find("name","welcome-new-people");
+      if(!welcomer) return;
+      if(welcomer) {
+         moment.locale('ar-ly');
+         var h = member.user;
+        let norelden = new Discord.RichEmbed()
+        .setColor('RANDOM')
+        .setThumbnail(h.avatarURL)
+        .setAuthor(h.username,h.avatarURL)
+        .addField(': you joined in discord at',`${moment(member.user.createdAt).format('D/M/YYYY h:mm a')} **\n** \`${moment(member.user.createdAt).fromNow()}\``,true)
+         .setFooter(`${h.tag}`,"https://cdn.discordapp.com/attachments/584924058492076045/586590946343518228/logo.png")
+     welcomer.send({embed:norelden});          
+               
+ 
+      }
+      });
+
+
 client.login(process.env.BOT_TOKEN);
