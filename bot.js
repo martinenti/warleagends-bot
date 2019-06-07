@@ -25,7 +25,6 @@ const sql = require("sqlite");
  const pretty = require('pretty-ms') 
 ,ti={}  
 ,spee={};
-const client = new Discord.Client();
 const prefix = '+'
 
 client.on('ready', () => {
