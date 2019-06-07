@@ -512,10 +512,10 @@ let welcomer = member.guild.channels.find("name","welcome-new-people");
       });
 
 const serverStats = {
-    guildID: '538374660707057696',
-    totalUsersID: '586645144900468772',
-    memberCountID: '586645281567801357',
-    botCountID: '586645406641946699'
+    guildID: '584923133467951104',
+    totalUsersID: '586661099601002496',
+    memberCountID: '586661199995863050',
+    botCountID: '586661287790903332'
 };
 
 client.on('guildMemberAdd', member => { 
