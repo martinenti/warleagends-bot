@@ -329,22 +329,7 @@ m.sendMessage(args)
 });
 	//clr
 	
-	if(command === "+clr") {
-        const emoji = client.emojis.find("name", "wastebasket")
-    let textxt = args.slice(0).join("");
-    if(msg.member.hasPermission("MANAGE_MESSAGES")) {
-    if (textxt == "") {
-        msg.delete().then
-    msg.channel.send("***```Supply A Number 👌```***").then(m => m.delete(3000));
-} else {
-    msg.delete().then
-    msg.delete().then
-    msg.channel.bulkDelete(textxt);
-        msg.channel.send("```Cleard: " + textxt + "\n Messages```").then(m => m.delete(3000));
-        }    
-    }
-}
-});
+
 
 //music 
 
