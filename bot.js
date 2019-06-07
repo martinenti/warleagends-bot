@@ -784,7 +784,7 @@ client.on('message', message => {
       if(!reason) reason = 'No reason provided.';
       if(user.user.id === message.author.id) return message.channel.send('You can\'t ban yourself!');
       if(message.guild.member(user.user).highestRole.position >= message.guild.member(message.member).highestRole.position) return message.channel.send(`You can't ban **${user.user.tag}** because his role highest than your role!`);
-     if(message.guild.member(user.user).highestRole.position >= message.guild.member(client.user).highestRole.position) return message.channel.send(``I can't ban **${user.user.tag}** because his role highest than my role!`);
+     if(message.guild.member(user.user).highestRole.position >= message.guild.member(client.user).highestRole.position) return message.channel.send(`I can't ban **${user.user.tag}** because his role highest than my role!`);
       if(message.guild.member(user.user).hasPermission('MANAGE_GUILD') || user.user.id == message.guild.owner.id) return message.channel.send(`You can't ban **${user.user.tag}** because he have Administration permissions!`);
      if(!message.guild.member(user.user).bannable) return message.channel.send(I can't ban **${user.user.tag}**.`);
       message.guild.member(user).ban(reason, user);
