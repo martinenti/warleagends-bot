@@ -326,7 +326,7 @@ client.users.forEach(m =>{
 m.sendMessage(args)
 })
 }
-});
+
 	//clr
 	
 
