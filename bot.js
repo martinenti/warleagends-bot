@@ -485,7 +485,7 @@ client.on('message', message => {
             .addField('``Users``' ,`[ ${client.users.size} ]` , true)
             .addField('``My Name``' , `[ ${client.user.tag} ]` , true)
             .addField('``My ID``' , `[ ${client.user.id} ]` , true)
-			      .addField('``My Prefix``' , `[ - ]` , true)
+			      .addField('``My Prefix``' , `[ + ]` , true)
 			      .addField('``My Language``' , `[ Java Script ]` , true)
 			      .setFooter('By | Martin')
 	        })
