@@ -573,4 +573,103 @@ reaction3.on("collect", r => {
         }
     });
 
+client.on("message", async message => {
+var prefix = "+";
+var aoasm =[
+{q: "What is the capital of * * Morocco * *", a: "Rabat"},
+    {Q: "What is the capital of * * albania * *", a: "Tiran"},
+    {q: "What is the capital of * * algeria * *", a: "algeria"},
+    {q: "What is the capital of * * andorra la Vella * *", a: "andorra"},
+    {q: "What is the capital of * * angola * *", a: "Luanda"},
+    {q: "What is the capital of * * antigua and Barbuda * *", a: "St Johns"},
+    {q: "What is the capital of * * argentina * *", a: "Buenos aires"},
+    {q: "What is the capital of * * armenia * *", a: "Yerevan"},
+    {q: "What is the capital of * * Egypt * *", a: "Cairo"}, SH
+    {q: "What is the capital of * * australia * *", a: "Canberra"},
+    {q: "What is the capital of * * austria * *", a: "Vienna"},
+    {q: "What is the capital of * * azerbaijan * *", a: "Baku"},
+    {q: "What is the capital of * * Bahamas * *", a: "Nassau"},
+    {q: "What is the capital of * * Bahrain * *", a: "Manama"},
+    {q: "What is the capital of * * Bangladesh * *", a: "DC"},
+    {q: "What is the capital of * * Barbados * *", a: "Bridgetown"},
+    {q: "What is the capital of * * Bella Russia * *", a: "Minsk"},
+    {q: "What is the capital of * * Belgium * *", a: "Brussels"},
+    {q: "What is the capital of * * Belize * *", a: "Plum Inn"},
+    {q: "What is the capital of * * Boys * *", a: "Porto Novo"},
+    {q: "What is the capital of * * Bhutan * *", a: "Thymo"},
+    {q: "What is the capital of * * Bolivia * *", a: "La Paz"},
+    {q: "What is the capital of * Bosnia and Herzegovina * *", a: "Sarajevo"},
+    {q: "What is the capital of * * Botswana * *", a: "Gaborone"},
+    {q: "What is the capital of * * Brazil * *", a: "Brasilia"},
+    {q: "What is the capital of * * Brunei * *", a: "Bandar Seri Begawan"},
+    {q: "What is the capital of * * Bulgaria * *", a: "Sofia"},
+    {q: "What is the capital of * Burkina Faso * *", a: "Ouagadougou"},
+    {q: "What is the capital of * * Burundi * *", a: "Bujumbura"},
+    {q: "What is the capital of * * Cambodia * *", a: "Phnom Penh"},
+    {q: "What is the capital of * * Cameroon * *", a: "Yaoundé"},
+    {q: "What is the capital of * * Canada * *", a: "Ottawa"},
+    {q: "What is the capital of * * Cape Verde * *", a: "Praia"},
+    {q: "What is the capital of * * Chad * *", a: "N'Djamena"},
+    {q: "What is the capital of * * Chile * *", a: "Santiago"},
+    {q: "What is the capital of * * China * *", a: "Beijing"},
+    {q: "What is the capital of * * Costa Rica * *", a: "San Jose"},
+    {q: "What is the capital of * Côte d'ivoire * *", a: "abidjan"},
+    {q: "What is the capital of * * Croatia * *", a: "Zagreb"},
+    {q: "What is the capital of * * Cuba * *", a: "Havana"},
+    {q: "What is the capital of * * Cyprus * *", a: ""},
+    {q: "What is the capital of * * Czech Republic * *", a: "Prague"},
+    {q: "What is the capital of * * Denmark * *", a: "Copenhagen"},
+    {q: "What is the capital of * * Djibouti * *", a: "Djibouti"},
+    {q: "What is the capital of * * Dominica * *", a: "Roso"},
+    {q: "What is the capital of * * Dominican * *", a: "San Domingo"},
+    {q: "What is the capital of * East Timor * *", a: "Dili"},
+    {q: "What is the capital of * * qatar * *", a: "Doha"},
+    {q: "What is the capital of * * KSa * *", a: "Riyadh"},
+    {q: "What is the capital of * * Syria * *", a: "Damascus"},
+    {q: "What is the capital of * * Turkey * *", a: "Click"},
+    {q: "What is the capital of * * Iraq * *", a: "Baghdad"},
+    {q: "What is the capital of * * * *", a: "Beirut"},
+    {q: "What is the capital of * * Palestine * *", a: "Jerusalem"},
+    {q: "What is the capital of * * USa * *", a: "Washington"},
+    {q: "What is the capital of * * Jordan * *", a: "Oman"},    
+    {q: "What is the capital of * * Sudan * *", a: "Hose"},
+    {q: "What is the capital of * * Germany * *", a: "Berlin"},
+    {q: "What is the capital of * * Canada * *", a: "Ottawa"},
+    {q: "What is the capital of * * Brazil * *", a: "Brasilia"},
+   ];
+    if(message.content == prefix+"Capitals"){
+        if(UserBlocked.has(message.guild.id)) return message.channel.send("هناك جلسة .")
+        UserBlocked.add(message.guild.id)
+        var ask = aoasm[Math.floor(Math.random() * aoasm.length)];
+        let embed = new Discord.RichEmbed()
+        .setTitle('Capitals game')
+        .setauthor(message.author.username, message.author.avatarURL)
+        .setColor("RaNDOM")
+        .setDescription(ask.q);
+        message.channel.sendEmbed(embed).then(msg=> msg.delete(20000))
+        const msgs = await message.channel.awaitMessages(msg => msg.author.id !== client.user.id ,{maxMatches:1,time:10000});
+            UserBlocked.delete(message.guild.id)
+        msgs.forEach(result => {
+           if(result.author.id == client.user.id) return;
+           if(result.content == "Capital of") return
+           if(result.content == ask.a){
+             let embeds = new Discord.RichEmbed()
+             .setTitle(':white_check_mark: true')
+             .setauthor(message.author.username, message.author.avatarURL)
+             .setColor("RaNDOM")
+             .setDescription(`**${result.author.username}** your answer is true`);
+                message.channel.sendEmbed(embeds);                return;
+           } else {
+
+                                  var embedx = new Discord.RichEmbed()
+                .setTitle(':x:false')
+                .setauthor(message.author.username, message.author.avatarURL)
+                .setColor("RaNDOM")
+                .setDescription(`**${result.author.username}** your answer is false`);
+                message.channel.sendEmbed(embedx);
+           }
+     });
+  }
+});
+
 client.login(process.env.BOT_TOKEN);
