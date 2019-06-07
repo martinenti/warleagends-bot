@@ -519,7 +519,7 @@ client.on('guildMemberRemove', member => {
 });
 
 client.on("guildMemberAdd", member => {
-  client.channels.find('id', '538374661143134218').send(`**Hi ${member} welcome to WarLegend :7047_chefkiss: **`)
+  client.channels.find('id', '584923352125145092').send(`**Hi ${member} welcome to WarLegend :7047_chefkiss: **`)
 });
 
 
