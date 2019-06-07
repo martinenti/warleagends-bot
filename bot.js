@@ -563,4 +563,14 @@ reaction3.on("collect", r => {
 }
 });
 
+	  client.on('message', message => {
+		  var prefix = "+";
+        let args = message.content.split(" ").slice(1).join(" ")
+        let men = message.mentions.users.first()
+        if(message.content.startsWith(prefix + "roll")){
+            if(!args) return message.channel.send("choose the number pls")
+            message.channel.send(Math.floor(Math.random() * args))
+        }
+    });
+
 client.login(process.env.BOT_TOKEN);
