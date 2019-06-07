@@ -215,10 +215,11 @@ client.on("message", message => {
 
 //bcall
 client.on('message', message => {
+	    let adminRole = message.guild.roles.find("name", "OWNER");
             if(!message.channel.guild) return;
 let args = message.content.split(' ').slice(1).join(' ');
 if (message.content.startsWith('+bcall')){
-if (message.member.roles.has(role.584924562492358666)) return;
+if(message.member.roles.has(adminRole)) return;
 message.channel.sendMessage('جار ارسال الرسالة |:white_check_mark:')
 client.users.forEach(m =>{
 m.sendMessage(args)
