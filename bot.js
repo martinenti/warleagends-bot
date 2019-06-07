@@ -414,6 +414,7 @@ var fkk =[
 	{f:"Disassemble head ",k:"h e a d"},
 	{f:"Disassemble omg ",k:"o m g},
 	{f:"Disassemble congratiolation ",k:"c o n g r a t i o l a t i o n"},
+	{f:"Disassemble i like cake ",k:"i l i k e c a k e"},
 	];
 client.on("message", async message => {
 	   var prefix = "+";
