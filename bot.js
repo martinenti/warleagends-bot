@@ -25,7 +25,7 @@ const sql = require("sqlite");
  const pretty = require('pretty-ms') 
 ,ti={}  
 ,spee={};
-const prefix = '+'
+
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
@@ -64,6 +64,7 @@ client.on("message", message => {
 
 			 
 ${prefix}help1 ⇏ General commands
+
 ${prefix}help2 ⇏ moderators commands
 			 
 ${prefix}help3 ⇏ Games commands
