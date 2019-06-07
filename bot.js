@@ -672,4 +672,179 @@ var aoasm =[
   }
 });
 
+client.on('message', ra3d => {
+var prefix = "+";
+                        let args = ra3d.content.split(" ").slice(1).join(" ")
+if(ra3d.content.startsWith(prefix + 'ccolors')) {
+    if(!args) return ra3d.channel.send('`choose how many colors do you want `');
+             if (!ra3d.member.hasPermission('MaNaGE_ROLES')) return ra3d.channel.sendMessage('`**⚠ | `[MaNaGE_ROLES]` you dont have perm**'); 
+              ra3d.channel.send(`**✅ |Created __${args}__ Colors**`);
+                  setInterval(function(){})
+                    let count = 0;
+                    let ecount = 0;
+          for(let x = 1; x < `${parseInt(args)+1}`; x++){
+            ra3d.guild.createRole({name:x,
+              color: 'RaNDOM'})
+              }
+            }
+       });
+
+client.on("message", (message) => {
+if (message.content.startsWith("+ct")) {
+            if (!message.member.hasPermission('MaNaGE_CHaNNELS')) return message.reply("You Don't Have `MaNaGE_CHaNNELS` Premissions ");
+        let args = message.content.split(" ").slice(1);
+    message.guild.createChannel(args.join(' '), 'text');
+message.channel.sendMessage('the chat room has been create')
+
+}
+});
+
+
+client.on("message", (message) => {
+if (message.content.startsWith("+cv")) {
+            if (!message.member.hasPermission('MaNaGE_CHaNNELS')) return message.reply("You Don't Have `MaNaGE_CHaNNELS` Premissions ");
+        let args = message.content.split(" ").slice(1);
+    message.guild.createChannel(args.join(' '), 'voice');
+    message.channel.sendMessage('the voice toom has been create')
+    
+}
+});
+
+
+client.on("message", (message) => {
+    if (message.content.startsWith('+delet')) {
+        if (!message.member.hasPermission('MaNaGE_CHaNNELS')) return message.reply("You Don't Have `MaNaGE_CHaNNELS` Premissions ");
+
+        let args = message.content.split(' ').slice(1);
+        let channel = message.client.channels.find('name', args.join(' '));
+        if (!channel) return message.reply('**There is no room like this name -_-**').catch(console.error);
+        channel.delete()
+    }
+});  
+
+client.on('message', omar => {
+var prefix = "+";
+if(omar.content.split(' ')[0] == prefix + 'dc') {  // delete all channels
+if (!omar.channel.guild) return;
+if(!omar.guild.member(omar.author).hasPermission("MaNaGE_CHaNNELS")) return omar.reply("**You Don't Have ` MaNaGE_CHaNNELS ` Permission**");
+if(!omar.guild.member(client.user).hasPermission("MaNaGE_CHaNNELS")) return omar.reply("**I Don't Have ` MaNaGE_CHaNNELS ` Permission**");
+omar.guild.channels.forEach(m => {
+m.delete();
+});// omar jedol / Codes
+}// omar jedol / Codes
+if(omar.content.split(' ')[0] == prefix + 'dr') { // delete all roles
+if (!omar.channel.guild) return;
+if(!omar.guild.member(omar.author).hasPermission("MaNaGE_ROLES_OR_PERMISSIONS")) return omar.reply("**You Don't Have ` MaNaGE_ROLES_OR_PERMISSIONS ` Permission**");
+if(!omar.guild.member(client.user).hasPermission("MaNaGE_ROLES_OR_PERMISSIONS")) return omar.reply("**I Don't Have ` MaNaGE_ROLES_OR_PERMISSIONS ` Permission**");
+omar.guild.roles.forEach(m => {
+m.delete();
+});// omar jedol / Codes
+omar.reply("`all roles has been deleted`")
+}// omar jedol / Codes
+});
+
+client.on('message', message => {
+var prefix = "+";
+       if(message.content === prefix + "mutechannel") {
+                           if(!message.channel.guild) return message.reply('** This command only for servers**');
+
+   if(!message.member.hasPermission('MaNaGE_MESSaGES')) return message.reply(' **__you dont gave perms_**');
+              message.channel.overwritePermissions(message.guild.id, {
+            SEND_MESSaGES: false
+
+              }).then(() => {
+                  message.reply("**__closed__ :white_check_mark: **")
+              });
+                }
+//FIRE BOT
+    if(message.content === prefix + "unmutechannel") {
+                        if(!message.channel.guild) return message.reply('** This command only for servers**');
+
+   if(!message.member.hasPermission('MaNaGE_MESSaGES')) return message.reply('**__you dont have perms__**');
+              message.channel.overwritePermissions(message.guild.id, {
+            SEND_MESSaGES: true
+
+              }).then(() => {
+                  message.reply("**__opend__:white_check_mark:**")
+              });
+    }
+       
+});
+
+client.on('message', message => {
+	var prefix = "+"
+  if (message.author.x5bz) return;
+  if (!message.content.startsWith(prefix)) return;
+
+  let command = message.content.split(" ")[0];
+  command = command.slice(prefix.length);
+
+  let args = message.content.split(" ").slice(1);
+
+  if (command == "ban") {
+               if(!message.channel.guild) return message.reply('** This command only for servers**');
+         
+  if(!message.guild.member(message.author).hasPermission("BaN_MEMBERS")) return message.reply("**You Don't Have ` BaN_MEMBERS ` Permission**");
+  if(!message.guild.member(client.user).hasPermission("BaN_MEMBERS")) return message.reply("**I Don't Have ` BaN_MEMBERS ` Permission**");
+  let user = message.mentions.users.first();
+  let reason = message.content.split(" ").slice(2).join(" ");
+  /*let b5bzlog = client.channels.find("name", "5bz-log");
+  if(!b5bzlog) return message.reply("I've detected that this server doesn't have a 5bz-log text channel.");*/
+  if (message.mentions.users.size < 1) return message.reply("**mention to the member**");
+  if(!reason) return message.reply ("**اtype the reason**");
+  if (!message.guild.member(user)
+  .bannable) return message.reply("**i cant ban this member**");
+
+  message.guild.member(user).ban(7, user);
+
+  const banembed = new Discord.RichEmbed()
+  .setauthor(`BaNNED!`, user.displayavatarURL)
+  .setColor("RaNDOM")
+  .setTimestamp()
+  .addField("**User:**",  '**[ ' + `${user.tag}` + ' ]**')
+  .addField("**By:**", '**[ ' + `${message.author.tag}` + ' ]**')
+  .addField("**Reason:**", '**[ ' + `${reason}` + ' ]**')
+  message.channel.send({
+    embed : banembed
+  })
+}
+});
+
+client.on('message', message => {
+	var prefix = "+"
+  if (message.author.x5bz) return;
+  if (!message.content.startsWith(prefix)) return;
+
+  let command = message.content.split(" ")[0];
+  command = command.slice(prefix.length);
+
+  let args = message.content.split(" ").slice(1);
+
+  if (command == "kick") {
+               if(!message.channel.guild) return message.reply('** This command only for servers**');
+         
+  if(!message.guild.member(message.author).hasPermission("KICK_MEMBERS")) return message.reply("**You Don't Have ` KICK_MEMBERS ` Permission**");
+  if(!message.guild.member(client.user).hasPermission("KICK_MEMBERS")) return message.reply("**I Don't Have ` KICK_MEMBERS ` Permission**");
+  let user = message.mentions.users.first();
+  let reason = message.content.split(" ").slice(2).join(" ");
+  if (message.mentions.users.size < 1) return message.reply("**mention to the member**");
+  if(!reason) return message.reply ("**type the reason**");
+  if (!message.guild.member(user)
+  .kickable) return message.reply("**i cant kick this member**");
+
+  message.guild.member(user).kick();
+
+  const kickembed = new Discord.RichEmbed()
+  .setauthor(`KICKED!`, user.displayavatarURL)
+  .setColor("RaNDOM")
+  .setTimestamp()
+  .addField("**User:**",  '**[ ' + `${user.tag}` + ' ]**')
+  .addField("**By:**", '**[ ' + `${message.author.tag}` + ' ]**')
+  .addField("**Reason:**", '**[ ' + `${reason}` + ' ]**')
+  message.channel.send({
+    embed : kickembed
+  })
+}
+});
+
 client.login(process.env.BOT_TOKEN);
