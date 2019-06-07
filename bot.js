@@ -412,7 +412,7 @@ var fkk =[
 	{f:"Disassemble armor ",k:"a r m o r"},
 	{f:"Disassemble helicopter ",k:"h e l i c o p t e r"},
 	{f:"Disassemble head ",k:"h e a d"},
-	{f:"Disassemble omg ",k:"o m g},
+	{f:"Disassemble omg ",k:"o m g"},
 	{f:"Disassemble congratiolation ",k:"c o n g r a t i o l a t i o n"},
 	{f:"Disassemble i like cake ",k:"i l i k e c a k e"},
 	];
