@@ -364,7 +364,7 @@ client.on('message', async msg => {
 		const permissions = voiceChannel.permissionsFor(msg.client.user);
 		if (!permissions.has('CONNECT')) {
 			
-			return msg.channel.send('i do not have the power to speak this room.);
+			return msg.channel.send('i do not have the power to speak this room.');
 		}
 		if (!permissions.has('SPEAK')) {
 			return msg.channel.send('i do not have the power to speak this room.');
