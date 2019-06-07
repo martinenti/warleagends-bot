@@ -470,13 +470,16 @@ client.on("message", message => {
         }
     });
 
+
+const Discord = require("discord.js");
+const client = new Discord.Client();
 client.on('message',async message => {
   if(message.author.bot) return;
 var prefix = "+"
 if(message.content.indexOf(prefix) !== 0) return;
 const args = message.content.slice(prefix.length).trim().split(/ +/g);
 const command = args.shift().toLowerCase();
-if(command === "giveaway") {
+if(command === "start") {
 var title = args[0].split('-').join(" ");
 if(args[2]) {
   message.channel.send(` \`\`\`MD
@@ -559,6 +562,4 @@ var duration = (upgradeTime * 1000)
 }
 });
 
-
-client.login("token");
 client.login(process.env.BOT_TOKEN); 
