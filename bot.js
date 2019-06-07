@@ -400,4 +400,50 @@ function play(guild, song) {
 	serverQueue.textChannel.send(`Start : **${song.title}**`);
 }
 
+var fkk =[
+        {f:"Disassemble i love my self",k:"i l o v e m y s e l f"},
+        {f:"Disassemble bus",k:"b u s"},
+        {f:"Disassemble car ",k:"c a r"},
+        {f:"Disassemble cow",k:"c o w"},
+        {f:"Disassemble our server is cool",k:"o u r s e r v e r i s c o o l"},
+        {f:"Disassemble the hero ",k:"t h e h e r o"},
+	];
+client.on("message", async message => {
+	   var prefix = "+";
+    if(message.content == prefix+"Disassemble"){
+        if(UserBlocked.has(message.guild.id)) return message.channel.send("هناك جلسة .")
+        UserBlocked.add(message.guild.id)
+        var ask = fkk[Math.floor(Math.random() * fkk.length)];
+        let embed = new Discord.RichEmbed()
+        .setTitle('Disassemble game')
+        .setAuthor(message.author.username, message.author.avatarURL)
+        .setColor("RANDOM")
+        .setDescription(ask.f);
+        message.channel.sendEmbed(embed).then(msg=> msg.delete(200000))
+        const msgs = await message.channel.awaitMessages(msg => msg.author.id !== client.user.id ,{maxMatches:1,time:100000});
+            UserBlocked.delete(message.guild.id)
+        msgs.forEach(result => {
+           if(result.author.id == client.user.id) return;
+           if(result.content == "Disassemble") return
+           if(result.content == ask.k){
+
+             let embeds = new Discord.RichEmbed()
+             .setTitle(':white_check_mark: correct')
+             .setAuthor(message.author.username, message.author.avatarURL)
+             .setColor("RANDOM")
+             .setDescription(`**${result.author.username}** your answer is correct`);
+                message.channel.sendEmbed(embeds);                return;
+           } else {
+
+                               var embedx = new Discord.RichEmbed()
+             .setTitle(':x:wrong')
+             .setAuthor(message.author.username, message.author.avatarURL)
+             .setColor("RANDOM")
+             .setDescription(`**${result.author.username}** your answer is wrong`);
+
+                message.channel.sendEmbed(embedx);
+           }
+     });
+  }
+});
 client.login(process.env.BOT_TOKEN); 
