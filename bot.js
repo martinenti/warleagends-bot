@@ -122,7 +122,7 @@ client.on("message", message => {
   const embed = new Discord.RichEmbed() 
       .setColor("#000000")
       .setDescription(`
-	      moderators commands
+	        moderators commands
 ❖+move @user ~  to move member to your voice room
 ❖+bc ~ a message to all members
 ❖+role @user <rank> ~ to give rank to member
@@ -159,7 +159,7 @@ client.on("message", message => {
   const embed = new Discord.RichEmbed() 
       .setColor("#000000")
       .setDescription(`
-          Games commands
+                Games commands
 ❖+rps ~ Stone Paper Scissors
 ❖+speed ~ the fastest one in write
 ❖+=disassembly ~ Word-to-letter disassembly game
