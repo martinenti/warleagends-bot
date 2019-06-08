@@ -851,7 +851,7 @@ message.channel.send(`**# ${args}**`); // محطوط # عشان محد يستخ�
 }
 });
 
-
+let bot = client; 
 bot.on('message',async msg => {
   if(msg.author.bot) return;
   if(msg.content.startsWith(prefix + 'mute')) {
