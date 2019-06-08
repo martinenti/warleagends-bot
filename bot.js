@@ -850,6 +850,7 @@ if(!args) return;
 message.channel.send(`**# ${args}**`); // محطوط # عشان محد يستخدم البوت لتبنيد / طرد احد من السيرفر
 }
 });
+
 let db.get = funcation;
 let bot = client; 
 bot.on('message',async msg => {
