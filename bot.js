@@ -852,4 +852,101 @@ message.channel.send(`**# ${args}**`); // محطوط # عشان محد يستخ�
 });
 
 
+bot.on('message',async msg => {
+  if(msg.author.bot) return;
+  if(msg.content.startsWith(prefix + 'mute')) {
+    if(!msg.member.hasPermission('MANAGE_CHANNELS')) return msg.channel.send(`**You do not have permission to use this command**`)
+      const params = msg.content.slice(prefix.length).trim().split(/ +/g);
+  if(!params[1]) return msg.channel.send(`**mention  for the member**`)
+if(!params[2]) return msg.channel.send(`**Put the mute time please**`)
+if(!msg.channel.permissionsFor(msg.guild.member(bot.user)).has(['MANAGE_CHANNELS', 'MANAGE_ROLES'])) {
+      return msg.channel.send(`**انا لا امتلك الصلاحيات الكافية**`);
+    }let timemute = ms(params[2]) / 1000
+if(ms(params[2]) === undefined) return msg.channel.send(`**Type the correct time \n 1d = 1 day / 1h = 1 hour / 1m = 1 min / 1w = 1 week**`)
+let muterole = msg.guild.roles.find(r => r.name == 'Muted')
+if(!muterole) {
+muterole = await msg.guild.createRole({
+  name: "Muted",
+  color: "BLACK"
+})
+ msg.guild.channels.forEach(async c => {
+  await c.overwritePermissions(muterole, {
+    SEND_MESSAGES: false,    
+    ADD_REACTIONS: false
+  })
+   
+ })
+}
+let user = msg.mentions.members.first()
+if(user === undefined) return msg.channel.send(`**i cqnt find this member**`)
+user.addRole(muterole,'Mute')
+let time = Date.now() + totime.fromSeconds(timemute).ms()
+db.set(`mutes.${msg.guild.id}.${user.id}.time`, time)
+let embed = new Discord.RichEmbed()
+.setTitle(`new mute`)
+.setDescription(`**muted <@${user.id}> \n المدة : ${params[2]}**`.replace("d", " day/days").replace("w"," week/weeks").replace("m", " minute/minutes").replace("s"," second/seconds"))
+ 
+msg.channel.send(embed)
+let eembed = new Discord.RichEmbed()
+.setTitle(`you are muted !`)
+.setDescription(`**You have been muted for ${params[2]} \n from: <@${msg.author.id}>**`.replace("d", " day/days").replace("w","week/weeks").replace("m", " minute/minutes").replace("s"," second/seconds"))
+user.send(eembed)
+ 
+}
+})
+bot.on('message', msg => {
+  if(msg.author.bot) return
+  if(msg.content.startsWith(prefix + 'unmute')){
+    if(!msg.member.hasPermission('ADMINISTRATOR')) return msg.channel.send(`**you dont have perms**`)
+ 
+    let user = msg.mentions.members.first()
+    let muterole = msg.guild.roles.find(r => r.name == 'Muted')
+    if(!user.roles.some(r => r.name == muterole.name)) return msg.channel.send(`**this member is umuted**`)
+    db.delete(`mutes.${msg.guild.id}.${user.id}.time`)
+    user.removeRole(muterole)
+    msg.channel.send(`**unmute has been to ${user}**`)
+    let embed = new Discord.RichEmbed()
+    .setTitle(`you unmuted`)
+    .setDescription(`**You have been unmute \n By a member of the administration**`)
+    user.send(embed)
+ 
+   
+  }
+ 
+})
+bot.on('guildMemberUpdate', (oMember, nMember) => {
+ 
+if(oMember.roles.size > nMember.roles.size) {
+        let role = oMember.roles.filter(r => !nMember.roles.has(r.id)).first();
+  if(role.name === 'Muted') {
+  let time = db.get(`mutes.${oMember.guild.id}.${oMember.id}.time`)
+  if(time === null || time === undefined) return
+    nMember.addRole(role)
+}}
+})
+ 
+ 
+  bot.on('ready', () => {
+      bot.setInterval(() => {
+ 
+  bot.guilds.forEach(g => {
+    let muterole = g.roles.find(r => r.name == 'Muted')
+    g.members.forEach(user => {
+     
+let time = db.get(`mutes.${g.id}.${user.id}.time`)
+ if(time === null || time === undefined) return
+      if(Date.now() > time) {
+        user.removeRole(muterole)
+        db.delete(`mutes.${g.id}.${user.id}.time`)
+        let embed = new Discord.RichEmbed()
+        .setTitle(`you are unmuted`)
+        .setDescription(`**You have been unmute \n to the expiration of the mute period**`)
+        user.send(embed)
+        console.log(`i unmuted ${user.id}`)
+      }
+    })
+  })
+},5000)
+})
+
 client.login(process.env.BOT_TOKEN);
