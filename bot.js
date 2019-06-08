@@ -815,7 +815,7 @@ client.on('message', message => {
 
 //say
 
-const fs = require("fs")
+
 const say = JSON.parse(fs.readFileSync('./say.json', 'utf8'))
 
 client.on("message", message =>
