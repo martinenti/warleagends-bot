@@ -852,6 +852,7 @@ message.channel.send(`**# ${args}**`); // محطوط # عشان محد يستخ�
 });
 
 client.on("message", message => {
+	var prefix = "+"
 if(message.content.startsWith(prefix + "avatar")){
 if(message.author.bot || message.channel.type == "dm") return;
 var args = message.content.split(" ")[1];
